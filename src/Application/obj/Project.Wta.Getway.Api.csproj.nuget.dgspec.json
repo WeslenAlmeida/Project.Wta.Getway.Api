@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/workspace/Project.Wta.Getway.Api/src/Application/Project.Wta.Getway.Api.csproj": {}
+  },
+  "projects": {
+    "/home/workspace/Project.Wta.Getway.Api/src/Application/Project.Wta.Getway.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/workspace/Project.Wta.Getway.Api/src/Application/Project.Wta.Getway.Api.csproj",
+        "projectName": "Project.Wta.Getway.Api",
+        "projectPath": "/home/workspace/Project.Wta.Getway.Api/src/Application/Project.Wta.Getway.Api.csproj",
+        "packagesPath": "/home/weslen/.nuget/packages/",
+        "outputPath": "/home/workspace/Project.Wta.Getway.Api/src/Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/weslen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Ocelot": {
+              "target": "Package",
+              "version": "[20.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

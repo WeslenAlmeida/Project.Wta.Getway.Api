@@ -1,0 +1,34 @@
+{
+    "Routes": [{
+        "DownstreamPathTemplate": "/api/v1/token",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "192.168.59.100",
+            "Port": 31101
+          }
+        ],
+        "UpstreamPathTemplate": "/api/v1/token",
+        "UpstreamHttpMethod": [ "GET", "POST"],
+        "RateLimitOptions": {
+            "EnableRateLimiting": true,
+            "Period": "1s",
+            "PeriodTimespan": 10,
+            "Limit": 1
+        }
+    }],
+    
+
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5264",
+        "RateLimitOptions": {
+            "DisableRateLimitHeaders": false,
+            "QuotaExceededMessage": "Rate limit !",
+            "HttpStatusCode": 429,
+            "ClientIdHeader" : "Key"
+          }
+    },
+    "DelegatingHandlers": [
+      "ApiKeyHandler"
+    ]
+}
