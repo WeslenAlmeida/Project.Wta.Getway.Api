@@ -5,20 +5,24 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
-            "Port": 3000
+            "Port": 5000
           }
         ],
         "UpstreamPathTemplate": "/api/v1/token",
-        "UpstreamHttpMethod": [ "GET", "POST"],
+        "UpstreamHttpMethod": ["POST", "GET"],
         "RateLimitOptions": {
             "EnableRateLimiting": true,
             "Period": "1s",
             "PeriodTimespan": 10,
             "Limit": 1
-        }
+          },
+          "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+          }
+        
     }],
     
-
     "GlobalConfiguration": {
         "BaseUrl": "http://localhost:5264",
         "RateLimitOptions": {

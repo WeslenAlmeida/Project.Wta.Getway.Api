@@ -1,4 +1,5 @@
 using System.Net;
+using Application.Configuration;
 
 namespace Application.Handlers
 {
@@ -13,7 +14,7 @@ namespace Application.Handlers
             if (string.IsNullOrEmpty(myHeader))
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
 
-            if (!string.IsNullOrEmpty(myHeader) && myHeader != "3a20b0d9-d576-4300-b5be-f4f23664feee")
+            if (!string.IsNullOrEmpty(myHeader) && myHeader != BuilderConfiguration.BuilderAppSettings()["ApiKey"])
                 return new HttpResponseMessage(HttpStatusCode.Forbidden);
                     
             return await base.SendAsync(request, cancellationToken);

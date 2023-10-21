@@ -1,5 +1,8 @@
+using System.Text;
 using Application.Configuration;
 using Application.Handlers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -7,7 +10,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddOcelot(BuilderConfiguration.Builder()).AddDelegatingHandler<ApiKeyHandler>(true);;
+builder.Services.AddOcelot(BuilderConfiguration.Builder()).AddDelegatingHandler<ApiKeyHandler>(true);
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!))
+        };
+    });
     
 var app = builder.Build();
 
@@ -30,6 +50,14 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-await app.UseOcelot();
+var configuration = new OcelotPipelineConfiguration
+        {
+            AuthenticationMiddleware = async (cpt, est) =>
+            {
+                await est.Invoke();
+            }
+        };
+app.UseOcelot(configuration).Wait();
+
 
 app.Run();
