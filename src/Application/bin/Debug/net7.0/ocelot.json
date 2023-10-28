@@ -5,7 +5,11 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
+<<<<<<< Updated upstream
             "Port": 5000
+=======
+            "Port": 3000
+>>>>>>> Stashed changes
           }
         ],
         "UpstreamPathTemplate": "/api/v1/token",
