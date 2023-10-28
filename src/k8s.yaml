@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: project-wta
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-wta-gtw-svc
+  namespace: project-wta
+spec:
+  selector:
+    app: project-wta
+  type: LoadBalancer
+  sessionAffinity: None
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: project-wta
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---    
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  project-wta-gtw-api-dep
+  namespace: project-wta
+  labels:
+    app:  project-wta
+spec:
+  selector:
+    matchLabels:
+      app: project-wta
+  template:
+    metadata:
+      labels:
+        app:  project-wta
+    spec:
+      containers:
+      - name:  project-wta-gtw-api
+        image:  weslenalmeida/project-getway:dev
+        ports:
+          - containerPort: 80
+        env:
+          - name: MongoSettings__DatabaseName
+            value: "WtaManagementCars"
+          - name: MongoSettings__ConnectionString
+            value: "mongodb://192.168.59.100:27017"
+          - name: RedisSettings__ConnectionString
+            value: "project-wta-redis-svc"
+          - name: Authorization__ApiKey
+            value: "3a20b0d9-d576-4300-b5be-f4f23664feee"            
+        resources:
+          requests:
+            cpu: 80m
+            memory: 80Mi
+          limits:
+            cpu: 300m
+            memory: 300Mi
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10    
+        terminationMessagePath: /local/termination-log
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%    
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: project-wta-gtw-hpa
+  namespace: project-wta
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: project-wta
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
+
+
+ 
+ 
+
+    
+
+    
+    
+      
