@@ -49,6 +49,10 @@
             "Ocelot": {
               "target": "Package",
               "version": "[20.0.0, )"
+            },
+            "Ocelot.Provider.Kubernetes": {
+              "target": "Package",
+              "version": "[20.0.0, )"
             }
           },
           "imports": [
@@ -70,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/226/sdk/7.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
         }
       }
     }

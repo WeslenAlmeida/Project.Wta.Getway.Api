@@ -44,18 +44,12 @@ spec:
         ports:
           - containerPort: 80
         env:
-          - name: MongoSettings__DatabaseName
-            value: "WtaManagementCars"
-          - name: MongoSettings__ConnectionString
-            value: "mongodb://192.168.59.100:27017"
-          - name: RedisSettings__ConnectionString
-            value: "project-wta-redis-svc"
-          - name: Authorization__ApiKey
-            value: "3a20b0d9-d576-4300-b5be-f4f23664feee"            
+          - name: ApiKey
+            value: "3a20b0d9-d576-4300-b5be-f4f23664feee"
         resources:
           requests:
-            cpu: 80m
-            memory: 80Mi
+            cpu: 150m
+            memory: 150Mi
           limits:
             cpu: 300m
             memory: 300Mi
@@ -96,6 +90,7 @@ spec:
       target:
         type: Utilization
         averageUtilization: 60
+
 
 
  

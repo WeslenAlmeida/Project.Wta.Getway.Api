@@ -11,14 +11,10 @@ namespace Application.Handlers
             
             var myHeader = myHeaderList!.First();
 
-            if (string.IsNullOrEmpty(myHeader))
+            if (string.IsNullOrEmpty(myHeader) || !string.IsNullOrEmpty(myHeader) && myHeader != BuilderConfiguration.Builder()["ApiKey"])
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
-
-            if (!string.IsNullOrEmpty(myHeader) && myHeader != BuilderConfiguration.BuilderAppSettings()["ApiKey"])
-                return new HttpResponseMessage(HttpStatusCode.Forbidden);
                     
             return await base.SendAsync(request, cancellationToken);
-              
         }
     }
 }

@@ -5,26 +5,17 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
-<<<<<<< Updated upstream
             "Port": 5000
-=======
-            "Port": 3000
->>>>>>> Stashed changes
           }
         ],
-        "UpstreamPathTemplate": "/api/v1/token",
+        "UpstreamPathTemplate": "/api/token",
         "UpstreamHttpMethod": ["POST", "GET"],
         "RateLimitOptions": {
             "EnableRateLimiting": true,
             "Period": "1s",
             "PeriodTimespan": 10,
             "Limit": 1
-          },
-          "AuthenticationOptions": {
-            "AuthenticationProviderKey": "Bearer",
-            "AllowedScopes": []
           }
-        
     }],
     
     "GlobalConfiguration": {
