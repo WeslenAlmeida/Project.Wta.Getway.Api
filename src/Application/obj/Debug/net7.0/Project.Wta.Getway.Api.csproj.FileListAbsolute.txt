@@ -2,7 +2,6 @@
 /home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/appsettings.json
 /home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/Project.Wta.Getway.Api.staticwebassets.runtime.json
 /home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/Project.Wta.Getway.Api
-/home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/ocelot.Docker.json
 /home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/ocelot.json
 /home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/Project.Wta.Getway.Api.deps.json
 /home/workspace/Project.Wta.Getway.Api/src/Application/bin/Debug/net7.0/Project.Wta.Getway.Api.runtimeconfig.json

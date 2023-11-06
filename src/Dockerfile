@@ -11,7 +11,7 @@ RUN dotnet restore "Application/Project.Wta.Getway.Api.csproj"
 COPY . . 
 WORKDIR "/src/Application"
 
-RUN mv ocelot.Docker.json ocelot.json
+
 RUN mv appsettings.Docker.json appsettings.json
 
 RUN dotnet build "Project.Wta.Getway.Api.csproj" -c Release -o /app/build
